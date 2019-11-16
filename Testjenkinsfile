@@ -34,10 +34,10 @@ stages {
             script {
             
              docker.build ${image}
-                       }
+                    }
                  }
                          }
-                }
+                
        }
 
 }
