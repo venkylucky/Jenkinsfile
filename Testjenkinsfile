@@ -34,8 +34,7 @@ stages {
           agent {
             dockerfile {
             
-            docker build . -t ${image}
-            docker run --rm -d -p80:80 ${image}
+             filename "dockerfile"
                        }
                  }
                          }
