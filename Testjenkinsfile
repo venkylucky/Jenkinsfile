@@ -21,18 +21,24 @@ stages {
                        }
     
     
-     stage('buildimage'){ 
+     stage('runscript'){ 
 
           steps{
     
         bat label: '', script: '''
-        dir
-        docker build . -t ${image}
-        docker run --rm -d -p80:80 ${image}
-                        '''  
+                             dir
+                               '''  
                  }
-                        }    
-    
+                        }  
+       stage('buildimage'{
+          agent {
+            dockerfile {
+            
+            docker build . -t ${image}
+            docker run --rm -d -p80:80 ${image}
+                       }
+                 }
+                         }
  
        }
 
