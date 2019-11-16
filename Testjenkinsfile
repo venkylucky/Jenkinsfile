@@ -1,13 +1,10 @@
 pipeline {
 
-    agent
-    {
-        label 'master'
-    }
-
+    agent any
+    
     environment {
       
-      image = 'myimage1'
+      image = 'venkylucky115/myimage1'
       registry = 'https://registry.hub.docker.com'
       
     }
@@ -31,12 +28,12 @@ stages {
                  }
                         }  
        stage('buildimage'){
-         agent {
+        
          steps{
           
-            dockerfile {
+            script {
             
-             filename "dockerfile"
+             docker.build ${image}
                        }
                  }
                          }
