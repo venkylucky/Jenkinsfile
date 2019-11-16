@@ -29,9 +29,13 @@ stages {
                         }  
        stage('buildimage'){
            steps{
-         agent { filename 'Dockerfile.build'
-                  label '${registry}'
+         agent { 
          
+          dockerfile { 
+          
+                  filename 'Dockerfile.build'
+                  label '${registry}'
+                     }
                } 
                 }
                          }
