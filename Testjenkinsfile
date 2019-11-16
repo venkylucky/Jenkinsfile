@@ -4,8 +4,8 @@ pipeline {
     
     environment {
       
-      image = 'venkylucky115/myimage1'
-      registry = 'https://registry.hub.docker.com'
+      registry = 'venkylucky115/myimage1'
+      registrysite = 'https://registry.hub.docker.com'
       
     }
 
@@ -33,7 +33,7 @@ stages {
           
             script {
             
-             docker.build ${image}
+             docker.build registry + ":$BUILD_NUMBER"
                     }
                  }
                          }
