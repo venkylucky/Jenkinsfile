@@ -31,6 +31,7 @@ stages {
                  }
                         }  
        stage('buildimage'){
+          steps{
           agent {
             dockerfile {
             
@@ -38,7 +39,7 @@ stages {
                        }
                  }
                          }
- 
+                }
        }
 
 }
