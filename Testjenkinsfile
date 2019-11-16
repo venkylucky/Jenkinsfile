@@ -12,8 +12,7 @@ pipeline {
       
     }
 
-stages {
-         
+       
     
 stage('pullcode') 
 
@@ -22,7 +21,9 @@ stage('pullcode')
 }    
     
     
-stage('buildimage') {
+stage('buildimage') 
+
+{
     
    bat label: '', script: '''
     dir
@@ -36,4 +37,4 @@ stage('buildimage') {
  
 }
 
-}
+
