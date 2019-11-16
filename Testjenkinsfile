@@ -1,0 +1,39 @@
+pipeline {
+
+    agent
+    {
+        label 'master'
+    }
+
+    environment {
+      
+      image = 'myimage1'
+      registry = 'https://registry.hub.docker.com'
+      
+    }
+
+stages {
+         
+    
+stage('pullcode') 
+
+{
+    git credentialsId: 'githubid', url: 'https://github.com/venkylucky/angular-tour-of-heroes.git'
+}    
+    
+    
+stage('buildimage') {
+    
+   bat label: '', script: '''
+    dir
+    
+    docker build . -t ${image}
+
+    docker run --rm -d -p80:80 ${image}
+  '''  
+}    
+    
+ 
+}
+
+}
