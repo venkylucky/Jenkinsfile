@@ -13,28 +13,27 @@ pipeline {
     }
 
        
+stages {    
+     stage('pullcode'){ 
+         steps{
+               git credentialsId: 'githubid', url: 'https://github.com/venkylucky/angular-tour-of-heroes.git'
+              }    
+                       }
     
-stage('pullcode') 
+    
+     stage('buildimage'){ 
 
-{
-    git credentialsId: 'githubid', url: 'https://github.com/venkylucky/angular-tour-of-heroes.git'
-}    
+          steps{
     
-    
-stage('buildimage') 
-
-{
-    
-   bat label: '', script: '''
-    dir
-    
-    docker build . -t ${image}
-
-    docker run --rm -d -p80:80 ${image}
-  '''  
-}    
+        bat label: '', script: '''
+        dir
+        docker build . -t ${image}
+        docker run --rm -d -p80:80 ${image}
+                        '''  
+                 }
+                        }    
     
  
+       }
+
 }
-
-
