@@ -30,7 +30,7 @@ stages {
                                '''  
                  }
                         }  
-       stage('buildimage'{
+       stage('buildimage'){
           agent {
             dockerfile {
             
