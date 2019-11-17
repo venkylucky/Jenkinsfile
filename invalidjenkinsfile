@@ -1,0 +1,43 @@
+pipeline {
+
+  
+    
+    environment {
+      
+      registry = 'venkylucky115/myimage1'
+      registrysite = 'https://registry.hub.docker.com'
+      
+    }
+
+       
+stages {    
+     stage('pullcode'){ 
+         steps{
+               git credentialsId: 'githubid', url: 'https://github.com/venkylucky/angular-tour-of-heroes.git'
+              }    
+                       }
+    
+    
+     stage('runscript'){ 
+
+          steps{
+    
+        bat label: '', script: '''
+                             dir
+                               '''  
+                 }
+                        }  
+       }
+  agent { 
+         
+          dockerfile { 
+          
+                  filename 'Dockerfile.build'
+                  label '${registry}'
+                     }
+                
+         }
+                       
+
+
+}
