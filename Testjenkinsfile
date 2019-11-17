@@ -1,43 +1,43 @@
 pipeline {
 
-  
-    
+ agent any
+
     environment {
-      
-      registry = 'venkylucky115/myimage1'
-      registrysite = 'https://registry.hub.docker.com'
-      
+  
+      root_dir = sh(script: 'pwd', , returnStdout: true).trim()
+   
     }
 
-       
-stages {    
-     stage('pullcode'){ 
-         steps{
-               git credentialsId: 'githubid', url: 'https://github.com/venkylucky/angular-tour-of-heroes.git'
-              }    
-                       }
-    
-    
-     stage('runscript'){ 
 
-          steps{
-    
-        bat label: '', script: '''
-                             dir
-                               '''  
-                 }
-                        }  
-       }
-  agent { 
-         
-          dockerfile { 
-          
-                  filename 'Dockerfile.build'
-                  label '${registry}'
+
+    stages {
+
+        stage('Setup') {
+
+            steps {
+
+                 git credentialsId: 'githubid', url: 'https://github.com/venkylucky/spring-petclinic.git'
+
+                  }
                      }
-                
-         }
-                       
 
+        stage('Selenium Test Suite') {
+     
 
+            steps {
+      
+                bat label: '', script: '''
+
+                  dir
+
+                  mvn clean test -f pom.xml
+
+                 '''
+
+            }
+
+          }
+
+        }  
+    
 }
